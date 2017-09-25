@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sign up</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class = 'jumbotron'>
+        <div class="col-sm-10">
+<h2> Welcome</h2>
+<p> Thank you for using the Yummy app. Please click below to create recipe catergories.
+    If you already have some catergories click view recipes to view your recipes. Thank you</p>
+</p>
+
+<a href = "#create_recipe" data-toggle="collapse"> Create recipe</a>
+      
+        <div id = "create_recipe" class="collapse">
+        <form class="form-horizontal">
+                <div class="form-group",class="col-sm-5" >
+                        <label class="control-label col-sm-5" for="recipe">Recipe category:</label>
+                        <div class="col-sm-5">
+                          <input type="recipe" class="form-control" id="recipe" placeholder="fish recipes">
+                        </div>
+                
+    
+    
+    
+    </div>
+    <div class="form-group"> 
+      <div class="col-sm-offset-5 col-sm-5">
+        <button type="submit" class="btn btn-success">Add</button>
+      </div>
+    </div>
+  </form>
+</div>
+<button type="button" class="btn btn-primary active">Delete recipe</button>
+<button type="button" class="btn btn-primary active">Edit recipe</button>
+</div>
+</body>
