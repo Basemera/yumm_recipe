@@ -12,18 +12,14 @@ class RegistrationForm(FlaskForm):
     username = TextField("username", [validators.Required()])
     email = TextField("email", [validators.Required(), validators.Email()])
     password = PasswordField("password", [validators.Required()])
-    
     submit = SubmitField("submit")
 
-class ShoppingListForm(FlaskForm):
-    listname = TextField("ListName",[validators.Required()])
-    
+class RecipecatergoryForm(FlaskForm):
+    categoryname = TextField("CategoryName",[validators.Required()])
     submit = SubmitField("submit")
     
 
-class additemsForm(FlaskForm):
-    itemname = TextField("itemname",[validators.Required()])
-    list_id = StringField('list_id')
-    price = IntegerField("price")
-    quantity = IntegerField("quantity")
+class addrecipeForm(FlaskForm):
+    name = TextField("name",[validators.Required()])
+    category_id = StringField('category_id')
     submit = SubmitField("submit")
