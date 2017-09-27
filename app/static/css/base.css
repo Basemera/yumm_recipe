@@ -1,4 +1,4 @@
-body { background-image: url("recipe.png");
+body { background-color: cornflowerblue;
     background-repeat: no-repeat;
     background-position: right top;
     margin-right: 200px;
@@ -18,7 +18,7 @@ h2{color: purple;
 
 form{
    border: 2px border-style mediumaquamarine;
-   background-color: cadetblue;
-   color: blue;
+   background-color:lightgreen;
+   color:#111AF0;
    border-style: groove;
 }

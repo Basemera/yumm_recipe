@@ -2,6 +2,7 @@
 
 {% block content %}
 
+
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 
@@ -24,7 +25,7 @@
         
                
                 <div class="col-sm-4">
-                    <h4 class="col-sm-10">Yummy Recipe App</h4>
+                    <h1 class="col-sm-10">Yummy Recipe App</h1>
                     <a href="/createcategory" class="col-sm-10"></a>
                 </div>
             
@@ -40,24 +41,30 @@
         
                    
                     {% if user == category[item]['userid'] %}
-        
-                  
+        <table>
+                  <tr>
                     <div class="col-sm-10">
         
-                        <div id="{{ category[item]['category_id'] }}">
-                            <a href = "addrecipe{{ category[item]['category_id'] }}">{{ category[item]['categoryname'] }}</a>
-                        </div>
-                        <div style="padding:0">
+                       <td> <div id="{{ category[item]['category_id'] }}" >
+                                 <h2>{{ category[item]['categoryname'] }}</h2>
+                            
+                                
+                        </div></td>
+                        <td><div style="padding:0">
                                 <a href="/updatecategory/{{ category[item]['category_id'] }}" style="padding:5px 0">edit category
                                     
                                 </a>
-                            </div>
-                            <div style="padding:0">
-                                <a href="/deletecategory/{{ category[item]['category_id'] }}" style="padding:5px 0">delete category
+                            </div></td>
+                           <td> <div style="padding:0">
+                                <a href="/deletecategory/{{ category[item]['category_id'] }}" style="padding:5px 0">delete
                                     
                                 </a>
                             </div>
-                        <div class ="col-sm-10">
+                        </td>
+                    </tr>
+                        </table>
+                        <p> Recipes click here to <a href = "addrecipe{{ category[item]['category_id'] }}">add a recipe</a></p>
+                            <div>
                                 
                                 {% if recipe %}
                                 
@@ -68,24 +75,32 @@
                         
                                     
                                         {% if user == recipe[a]['userid'] and recipe[a].category_id == category[item].category_id %}
-                                         
-                                                        
-                                                                                                                    <label class="col-sm-4"><input type="checkbox">  {% if recipe[a]["checked"] %} checked {% endif %} {{ recipe[a]['name'] }}</label>
-                                                                                                            
-                                                                                                                    <div style="padding:0">
-                                                                                                                            <a href="/updaterecipe/{{ recipe[a]['recipe_id'] }}" style="padding:5px 0"><button type="button" class="btn btn-info btn-xs">edit recipe
-                                                                                                                                </button>
+
+                                        
+                                       
+                                       <table>
+                                           <tr>
+                                               
+                                                                                                                  <td>  <label class="col-sm-4"> <h3> {% if recipe[a]["checked"] %} checked {% endif %} {{ recipe[a]['name'] }}</h3></label>
+                                                                                                                  </td>
+                                                                                                                   <td> <div style="padding:0">
+                                                                                                                            <a href="/updaterecipe/{{ recipe[a]['recipe_id'] }}" style="padding:5px 0">edit recipe
+                                                                                                                                
                                                                                                                                 
                                                                                                                             </a> 
-                                                                                                                            <div style="padding:0">
-                                                                                                                                    <a href="/deleterecipe/{{ recipe[a]['recipe_id'] }}" style="padding:5px 0">Delete recipe
+                                                                                                                            </div></td>
+                                                                                                                           <td> <div style="padding:0">
+                                                                                                                                    <a href="/deleterecipe/{{ recipe[a]['recipe_id'] }}" style="padding:5px 0">delete recipe
                                                                                                                                         
                                                                                                                                     </a> 
                                                                                                             
-                                                
-                                                
-
-
+                                                                                                                            </div>
+                                                                                                                           </td>
+                                                                                                                        
+                                                                                                                        </tr>
+                                                                                                                        
+                                                                                                                        </table>
+                                                                                                                        
                                                                                                             
                                                                                                                                     {% endif %}                                                                   
                                                 
