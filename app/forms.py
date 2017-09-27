@@ -23,3 +23,8 @@ class addrecipeForm(FlaskForm):
     name = TextField("name",[validators.Required()])
     category_id = StringField('category_id')
     submit = SubmitField("submit")
+
+class editrecipeForm(FlaskForm):
+    name = TextField("name")
+    category_id = StringField('category_id')
+    submit = SubmitField("submit")

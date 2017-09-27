@@ -1,0 +1,46 @@
+{% extends "baseloggedin.html" %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+{% for message in messages %}
+<div class="alert alert-info message col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+    <strong><i class="fa fa-info-circle"></i></strong> {{ message.message }}
+</div>
+
+{% endfor %}
+
+{% endif %}
+{% endwith %}
+
+<form action="/deleterecipe/{{recipe_id}}" method="post" name= "delete-recipe">
+    {{ form.hidden_tag() }}
+    <h2 class="form-heading">Delete recipe</h2>
+    <div>
+            <p>Do you wish to delete this recipe?</p>
+        </div>
+    <div class="input-wrap">
+            <div class="col-xs-12">
+                    <div class="form-group">
+                            {% for error in form.name.errors %}
+                            [{{ error }}]
+                            {% endfor %}<br>
+                            name<br>
+                            <input placeholder="recipe to be deleted" class="form-control" required value="{{ name }}" name="name"></input>
+                    </div>
+                  
+            <div>
+                    <div class="form-group">
+                        <br>
+                        <center>
+                            <button type="submit" name="Submit">Delete recipe</button>
+                        </center>
+                    </div>
+                </div>
+    </div>
+</form>
+</div>
+ <div><a href = "/viewcategory"><button>No return to list of recipes</button></a></div>                          
+{% endblock %}

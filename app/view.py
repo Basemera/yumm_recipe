@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, render_template, flash, redirect, url_for, get_flashed_messages, session, abort
-from .forms import LoginForm, RegistrationForm, RecipecatergoryForm, addrecipeForm
+from .forms import LoginForm, RegistrationForm, RecipecatergoryForm, addrecipeForm, editrecipeForm
 from . import app
 from app.modals import User, recipe_category, recipe, Abstract
 
@@ -8,10 +8,10 @@ def create_session_keys():
     if "users" not in session:
         session["users"] = {}
     if "recipe_category" not in session:
-        session["recipe"] = {}
+        session["recipe_category"] = {}
 
     if "recipes" not in session:
-        session["items"] = {}
+        session["recipes"] = {}
 
     if "logged_in" not in session:
         session["logged_in"] = None 
@@ -45,7 +45,7 @@ def index():
     """creates a homepage"""
     create_session_keys()
     if request.method=='GET':
-        return render_template('homepage.html')
+        return redirect(url_for('homepage'))
     
     elif "users" in session:
         return redirect(url_for('viewcategory'))
@@ -111,7 +111,7 @@ def signin():
         return redirect(url_for('signup'))
     
     elif request.method == 'GET':
-        return render_template('login.html', title = 'log in', form = form, form_reg = form_reg)
+        return render_template('signin.html', title = 'log in', form = form, form_reg = form_reg)
 
 @app.route('/logout', methods= ['GET', 'POST'])
 def logout():
@@ -169,7 +169,7 @@ def updatecategory(category_id):
                                             category_id = category_id )
     
 @app.route('/deletecategory/<category_id>', methods= ['GET', 'POST'])    
-def deletecategory(list_id):
+def deletecategory(category_id):
     """methid to delete a recipe category"""
     create_session_keys()
     if guest_redirect():
@@ -182,7 +182,7 @@ def deletecategory(list_id):
         return redirect(url_for('viewcategory'))
     category = session['recipe_category'][category_id]
 
-    return render_template('deletelist.html', form = form, 
+    return render_template('deletecategory.html', form = form, 
                                             categoryname = category['categoryname'],
                                             category_id = category_id )
     
@@ -204,7 +204,7 @@ def viewcategory():
                             recipe = session["recipes"],
                            form=form,
                            user=session["logged_in"]["userid"],
-                           form_item = form_item)
+                           form_recipe = form_recipe)
 
 @app.route('/addrecipe<id>', methods= ['GET', 'POST'])
 def addrecipe(id):
@@ -228,11 +228,12 @@ def addrecipe(id):
 
 
 @app.route('/updaterecipe/<recipe_id>', methods= ['GET', 'POST'])
-def updateitem(recipe_id):
+def updaterecipe(recipe_id):
+    #a method to edit a recipe
     create_session_keys()
     if guest_redirect():
         return redirect(url_for("signin"))
-    form = additemsForm()
+    form = addrecipeForm()
 
     if form.validate_on_submit():
         session['recipes'][recipe_id]['name'] = form.name.data
@@ -240,7 +241,7 @@ def updateitem(recipe_id):
         return redirect(url_for('viewcategory'))
     recipes = session['recipes'][recipe_id]
 
-    return render_template('updateitem.html', form = form, 
+    return render_template('updaterecipe.html', form = form, 
                                             name = recipes['name'],
                                             recipe_id = recipe_id )
 
@@ -249,7 +250,7 @@ def deleterecipe(recipe_id):
     create_session_keys()
     if guest_redirect():
         return redirect(url_for("signin"))
-    form = additemsForm()
+    form = addrecipeForm()
 
     if form.validate_on_submit():
         session['recipes'][recipe_id]['name'] = form.name.data
@@ -258,7 +259,7 @@ def deleterecipe(recipe_id):
         return redirect(url_for('viewcategory'))
     recipes = session['recipes'][recipe_id]
 
-    return render_template('updateitem.html', form = form, 
+    return render_template('deleterecipe.html', form = form, 
                                             name = recipes['name'],
                                             recipe_id = recipe_id )
 
