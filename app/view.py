@@ -111,7 +111,7 @@ def signin():
         return redirect(url_for('signup'))
     
     elif request.method == 'GET':
-        return render_template('login.html', title = 'log in', form = form, form_reg = form_reg)
+        return render_template('signin.html', title = 'log in', form = form, form_reg = form_reg)
 
 @app.route('/logout', methods= ['GET', 'POST'])
 def logout():

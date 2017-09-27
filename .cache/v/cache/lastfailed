@@ -1,3 +1,5 @@
 {
+  "test_createlist.py::createlisttestcase::testcategorynamerequirred": true,
+  "test_createlist.py::createlisttestcase::testcreaterecipecategoryfunctionality": true,
   "test_homepage.py": true
 }
