@@ -1,0 +1,43 @@
+{% extends "baseloggedin.html" %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+{% for message in messages %}
+<div class="alert alert-info message col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+    <strong><i class="fa fa-info-circle"></i></strong> {{ message.message }}
+</div>
+
+{% endfor %}
+
+{% endif %}
+{% endwith %}
+
+<form action="/updaterecipe/{{recipe_id}}" method="post" name= "update-recipe">
+    {{ form.hidden_tag() }}
+    <h2 class="form-heading">Edit Recipe</h2>
+    <div class="input-wrap">
+            <div class="col-xs-12">
+                    <div class="form-group">
+                            {% for error in form.name.errors %}
+                            [{{ error }}]
+                            {% endfor %}<br>
+                            <input placeholder="new recipe name" class="form-control" required value="{{ name }}" name="name"/>
+                    </div>
+            </div>
+            <div>
+                    <div class="form-group">
+                        <br>
+                        <center>
+                            <button type="submit" name="Submit">Update Recipe</button>
+                        </center>
+                    </div>
+                </div>
+    </div>
+</form>
+<a href = "/viewcategory">Return to recipe list</a>
+</div>
+                            
+{% endblock %}

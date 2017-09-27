@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+    {% for message in messages %}
+    <div class="col-sm-10">
+         {{ message.message }}
+    </div>
+
+    {% endfor %}
+
+    {% endif %}
+    {% endwith %}>
+  <div class = "container">
+    <div class = "row">
+    <div class = 'jumbotron' span = 4>
+        
+<h2> Sign up</h2>
+<p> Fill in the details and sign up to enjoy the app benefits</p>
+        
+        <form class="form-signup form form-horizontal" action="/signup" name="sign-up" method="post">
+          {{ form.hidden_tag() }}
+                <div class="form-group" >
+                        <label class="control-label col-sm-4" for="username">Username:</label>
+                        <div class = "control-label col-sm-4">
+                            {% for error in form.username.errors %}
+                            [{{ error }}]
+                            {% endfor %}<br>
+                            {{ form.username(placeholder="pbasemera", class="form-control", required="required", id="username") }}
+                        </div>
+                      </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="email">Email:</label>
+                  <div class ="control-label col-sm-4">
+                      {% for error in form.email.errors %}
+                      [{{ error }}]
+                      {% endfor %}<br>
+                      {{ form.email(placeholder="bsmrrachel@gmail.com", class="form-control", required="required", id="email", type="email") }}
+                  </div>
+                </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="pwd">Password:</label>
+      <div class="control-label col-sm-4"> 
+          {% for error in form.password.errors %}
+          [{{ error }}]
+          {% endfor %}<br>
+          {{ form.password(placeholder="Enter Password", class="form-control", required="required", id="password") }}
+      </div>
+    </div>
+    <div class="form-group"> 
+        <div class="checkbox" class ="col-sm-4">
+          <label class ="control-label col-sm-4"><input type="checkbox"> I have read and agreed to the Yummy recipes app and conditions</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group"> 
+      <div class="col-sm-offset-5 col-sm-5">
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </div>
+  </form>
+    </div>
+    </div>
+</div>
+{% endblock %}

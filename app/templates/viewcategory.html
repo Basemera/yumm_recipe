@@ -1,0 +1,124 @@
+{% extends "baseloggedin.html" %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+{% for message in messages %}
+<div class = "row">
+<div class="col-sm-4">
+ {{ message.message }}
+</div>
+</div>
+
+{% endfor %}
+
+{% endif %}
+{% endwith %}
+<div class = "row">
+<div class="col-sm-5">
+        
+            
+            <div class="col-sm-4 text-center">
+        
+               
+                <div class="col-sm-4">
+                    <h4 class="col-sm-10">Yummy Recipe App</h4>
+                    <a href="/createcategory" class="col-sm-10"></a>
+                </div>
+            
+                <div class="col-sm-12">
+        
+                    <h1>To view recipes click a category</h1>
+        
+        
+        
+                    {% if category %}
+        
+                    {% for item in category %}
+        
+                   
+                    {% if user == category[item]['userid'] %}
+        
+                  
+                    <div class="col-sm-10">
+        
+                        <div id="{{ category[item]['category_id'] }}">
+                            <a href = "addrecipe{{ category[item]['category_id'] }}">{{ category[item]['categoryname'] }}</a>
+                        </div>
+                        <div style="padding:0">
+                                <a href="/updatecategory/{{ category[item]['category_id'] }}" style="padding:5px 0">edit category
+                                    
+                                </a>
+                            </div>
+                            <div style="padding:0">
+                                <a href="/deletecategory/{{ category[item]['category_id'] }}" style="padding:5px 0">delete category
+                                    
+                                </a>
+                            </div>
+                        <div class ="col-sm-10">
+                                
+                                {% if recipe %}
+                                
+                                
+                        
+                        
+                                        {% for a in recipe %}
+                        
+                                    
+                                        {% if user == recipe[a]['userid'] and recipe[a].category_id == category[item].category_id %}
+                                         
+                                                        
+                                                                                                                    <label class="col-sm-4"><input type="checkbox">  {% if recipe[a]["checked"] %} checked {% endif %} {{ recipe[a]['name'] }}</label>
+                                                                                                            
+                                                                                                                    <div style="padding:0">
+                                                                                                                            <a href="/updaterecipe/{{ recipe[a]['recipe_id'] }}" style="padding:5px 0"><button type="button" class="btn btn-info btn-xs">edit recipe
+                                                                                                                                </button>
+                                                                                                                                
+                                                                                                                            </a> 
+                                                                                                                            <div style="padding:0">
+                                                                                                                                    <a href="/deleterecipe/{{ recipe[a]['recipe_id'] }}" style="padding:5px 0">Delete recipe
+                                                                                                                                        
+                                                                                                                                    </a> 
+                                                                                                            
+                                                
+                                                
+
+
+                                                                                                            
+                                                                                                                                    {% endif %}                                                                   
+                                                
+                                                                                                                      
+                                                                                                                                      {% endfor %}
+                                                                                                                                      {% endif %}
+                                                                                                                                      
+                                                                                                                                      
+                                            
+                                                                                                                                    
+
+
+
+
+                                {% endif %}
+                                
+                        
+                                
+                        
+                                    {% endfor %}
+
+                                    {% endif %}
+                                    
+                    </div>
+                    </div>
+                    <div class = 'jumbotron'>
+                        <p><a href="/createcategory">add another category</a></p></div>
+                </div>
+            </div>
+</div>
+
+
+        </div>
+
+        
+                                                                                                              {% endblock %}

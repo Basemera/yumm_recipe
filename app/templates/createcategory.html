@@ -1,0 +1,56 @@
+{% extends "baseloggedin.html" %}
+{% block content %}
+
+<div class="container col-xs-12">
+    
+        <!--    flash message logic    -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+    
+        {% for message in messages %}
+        <div class="alert alert-info message col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+            <strong><i class="fa fa-info-circle"></i></strong> {{ message.message }}
+        </div>
+    
+        {% endfor %}
+    
+        {% endif %}
+        {% endwith %}
+    <div class = 'jumbotron'>
+        <div class="col-sm-10">
+<h2> Welcome</h2>
+<p> Thank you for using the Yummy app. Please click below to create recipe catergories.
+    If you already have some catergories click view recipes to view your recipes. Thank you</p>
+</p>
+
+<a href = "#create_recipe" data-toggle="collapse"> Create recipe category</a>
+      
+        <div id = "create_recipe" class="collapse">
+        <form class="form-horizontal" action = "/createcategory" method = "post">
+          {{ form.hidden_tag() }}
+                <div class="form-group",class="col-sm-5" >
+                        <div class="col-sm-5">
+                            {% for error in form.categoryname.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}<br>
+                            <br><label class="control-label col-sm-5" for="recipe">Recipe category:</label>
+                            {{ form.categoryname(placeholder="fish recipes", class="form-control", required="required") }}
+                        </div>
+                
+    
+    
+    
+    </div>
+    <div class="form-group"> 
+      <div class="col-sm-offset-5 col-sm-5">
+        <button type="submit" class="btn btn-success">Add recipe category</button>
+      </div>
+    </div>
+  </form>
+</div>
+<a href = "/viewcategory">
+<button type="button" class="btn btn-succes active">Go back to recipes</button>
+</a>
+
+</div>
+{% endblock %}
