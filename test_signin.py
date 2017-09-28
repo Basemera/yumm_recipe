@@ -44,7 +44,7 @@ class logintestcase(unittest.TestCase):
 
             #test that the username is in session
             self.assertEqual('phiona', user_loggedin, 'username not in session')
-            self.assertNotEqual('phiona', user_loggedin, 'username in session')
+            
             
   
     def testusernamerequirred(self):
@@ -92,7 +92,7 @@ class logintestcase(unittest.TestCase):
                 password="123"
                 ), follow_redirects=True)
 
-            rv1 = client.post('/viewlist', data=dict(
+            rv1 = client.post('/viewcategory', data=dict(
                 username="phiona",
                 password="123"), follow_redirects=True)
 

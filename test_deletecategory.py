@@ -35,8 +35,8 @@ class deletelisttestcase(unittest.TestCase):
                 lists= category[key]
                 if lists['categoryname']=='fish':
                     del lists['categoryname']
-                    if lists['categoryname']!='fish':
-                        deleted = True
+                    
+                    deleted = True
         
 
             #test that when post request is successful
@@ -52,7 +52,7 @@ class deletelisttestcase(unittest.TestCase):
                 "The createcategory page was not loaded as expected")   
             self.assertNotEqual(None, logged_in,
                                 "The user was not logged in")
-            self.assertEqual(deleted, False, 'category not deleted')
+            self.assertEqual(deleted, True, 'category not deleted')
 
             #test that the username is in session
             self.assertNotEqual({}, category, 'category in session')
