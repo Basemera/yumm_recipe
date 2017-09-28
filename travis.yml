@@ -11,13 +11,9 @@ before_install:
     - pip install coveralls
 
 # command to run tests
-script: py.test --cov-config .coveragerc --cov=app .
+script: - py.test
 
 after_success:
     - coveralls
 
-deploy:
-  provider: heroku
-  app: andela-yummy-recipe-app
-  api_key:
-    secure: "1e9f74ec-b530-4a13-8f18-46c668e018f7"
+
