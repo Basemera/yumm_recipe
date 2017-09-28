@@ -1,124 +1,125 @@
 {% extends "baseloggedin.html" %}
 
 {% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel ="stylesheet" href = "static/css/view.css">
 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="panel-group" id="accordion">
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 
 {% for message in messages %}
-<div class = "row">
-<div class="col-sm-4">
- {{ message.message }}
-</div>
-</div>
-
+{{ message.message }}
 {% endfor %}
 
 {% endif %}
 {% endwith %}
-<div class = "row">
-<div class="col-sm-5">
-        
-            
-            <div class="col-sm-4 text-center">
-        
-               
-                <div class="col-sm-4">
-                    <h4 class="col-sm-10">Yummy Recipe App</h4>
-                    <a href="/createcategory" class="col-sm-10"></a>
-                </div>
-            
-                <div class="col-sm-12">
-        
-                    <h1>To view recipes click a category</h1>
-        
-        
-        
-                    {% if category %}
-        
-                    {% for item in category %}
-        
-                   
-                    {% if user == category[item]['userid'] %}
-        
-                  
-                    <div class="col-sm-10">
-        
-                        <div id="{{ category[item]['category_id'] }}">
-                            <a href = "addrecipe{{ category[item]['category_id'] }}">{{ category[item]['categoryname'] }}</a>
+
+
+        <div span = 6>
+                        <p>Yummy Recipe App</p>
+                        <p style="color:DodgerBlue; background-color:beige"> Welcome to the Yummy Recipe view app page</p>
+                <div>
+                        <div>
+                                
+                                <a href="/createcategory" >Create category</a>
+                                <div>
+                                        <p style="background-color:beige">To view recipes click a category</p>
+
+                                        {% if category %}
+                                        
+                                                    {% for item in category %}
+                                        
+                                                   
+                                                    {% if user == category[item]['userid'] %}
+                                                    <div >
+                                                                <p style="background-color:beige"> 
+                                                                 <a data-toggle="collapse" data-parent="#accordion" href="#{{ category[item]['category_id'] }}">  {{ category[item]['categoryname'] }}</a>
+
+                                                                    <div style="padding:0">
+                                                                            <a href="/updatecategory/{{ category[item]['category_id'] }}"><span class="glyphicon glyphicon-plus-sign"></span>
+                                                                                
+                                                                            </a>
+                                                                        </div>
+                                                                        <div style="padding:0">
+                                                                                <a href="/deletecategory/{{ category[item]['category_id'] }}"><span class="glyphicon glyphicon-trash"></span>
+                                                                                    
+                                                                                </a>
+                                                                            </div></p>
+                                                    </div>
+                                </div>
                         </div>
-                        <div style="padding:0">
-                                <a href="/updatecategory/{{ category[item]['category_id'] }}" style="padding:5px 0">edit category
-                                    
-                                </a>
-                            </div>
-                            <div style="padding:0">
-                                <a href="/deletecategory/{{ category[item]['category_id'] }}" style="padding:5px 0">delete category
-                                    
-                                </a>
-                            </div>
-                        <div class ="col-sm-10">
-                                
-                                {% if recipe %}
-                                
-                                
-                        
-                        
-                                        {% for a in recipe %}
-                        
-                                    
-                                        {% if user == recipe[a]['userid'] and recipe[a].category_id == category[item].category_id %}
-                                         
-                                                        
-                                                                                                                    <label class="col-sm-4"><input type="checkbox">  {% if recipe[a]["checked"] %} checked {% endif %} {{ recipe[a]['name'] }}</label>
-                                                                                                            
-                                                                                                                    <div style="padding:0">
-                                                                                                                            <a href="/updaterecipe/{{ recipe[a]['recipe_id'] }}" style="padding:5px 0"><button type="button" class="btn btn-info btn-xs">edit recipe
-                                                                                                                                </button>
-                                                                                                                                
-                                                                                                                            </a> 
-                                                                                                                            <div style="padding:0">
-                                                                                                                                    <a href="/deleterecipe/{{ recipe[a]['recipe_id'] }}" style="padding:5px 0">Delete recipe
-                                                                                                                                        
-                                                                                                                                    </a> 
-                                                                                                            
-                                                
-                                                
-
-
-                                                                                                            
-                                                                                                                                    {% endif %}                                                                   
-                                                
-                                                                                                                      
-                                                                                                                                      {% endfor %}
-                                                                                                                                      {% endif %}
-                                                                                                                                      
-                                                                                                                                      
-                                            
-                                                                                                                                    
-
-
-
-
-                                {% endif %}
-                                
-                        
-                                
-                        
-                                    {% endfor %}
-
-                                    {% endif %}
-                                    
-                    </div>
-                    </div>
-                    <div class = 'jumbotron'>
-                        <p><a href="/createcategory">add another category</a></p></div>
                 </div>
-            </div>
+        </div>
 </div>
 
+                                                                            
 
-        </div>
+                                                                           
+<div id="{{ category[item]['category_id'] }}" class="collapse">                                                                            
+{% if recipe %}
+                                                                            
+                                                                            
+                                                                    
+                                                                    
+                                                                                    {% for a in recipe %}
+                                                                    
+                                                                                
+                                                                                    {% if user == recipe[a]['userid'] and recipe[a].category_id == category[item].category_id %}
+                                                                                    
+                                                                                    <div class = "row">
+                                                                                            <div class = col-xs-4>
+                                                                                                    <li>
+                                                                                            <label> <h3> {% if recipe[a]["checked"] %} checked {% endif %} {{ recipe[a]['name'] }}
+                                                                                                        <a href="/updaterecipe/{{ recipe[a]['recipe_id'] }}"><span class="glyphicon glyphicon-plus-sign"></span></a>
+                                                                                                        <a href="/deleterecipe/{{ recipe[a]['recipe_id'] }}"><span class="glyphicon glyphicon-trash" class="btn btn-info"></span></a></h3></label></div>
+                                                                                            <div class = col-xs-1>
+                                                                                                    <a href="/updaterecipe/{{ recipe[a]['recipe_id'] }}">
+                                                                                                        
+                                                                                                        
+                                                                                                    </a> 
+                                                                                                    </div>
+                                                                                                    <div style="padding:0" class = col-xs-1>
+                                                                                                            <a href="/deleterecipe/{{ recipe[a]['recipe_id'] }}">
+                                                                                                                
+                                                                                                            </a> 
+                                                                                                            
+                                                                                                    </div>
+                                                                                                </li>
+                                                                                    </div>
+                                                                                    
+                                                                                                
+                                                                                    
+                                                                                    {% endif %}                                                                   
+                                                                                    
+                                                                                                                                                          
+                                                                                                                                                                          {% endfor %}
+                                                                                                                                                                          {% endif %}
+                                                                                                                                                                          
+</div></div>
+<p> Recipes click here to <a href = "addrecipe{{ category[item]['category_id'] }}">add a recipe</a></p>
 
+                                                                                                                                                                          {% endif %}
+                                                                                                                                                                          
+                                                                                                                                                                  
+                                                                                                                                                                          
+                                                                                                                                                                  
+                                                                                                                                                                              {% endfor %}
+                                                                                                                                                                              
+                                                                                                                                          
+                                                                                                                                                                              {% endif %}
+                                                                                                                                                                              
+                                                    </div>
+                                                    
+                                    
+                                                        <div class = 'jumbotron'>
+                                                                <p><a href="/createcategory">add another category</a></p></div>
+                                                
+                                
+                            
+                        
+                
         
-                                                                                                              {% endblock %}
+
+{% endblock %}

@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<!-- sign up form styling       -->
+<link href="{{ url_for('static', filename='css/signup.css') }}" rel="stylesheet" />
+
 <div class="container">
 
     {% with messages = get_flashed_messages() %}
@@ -17,7 +21,7 @@
     {% endwith %}>
   <div class = "container">
     <div class = "row">
-    <div class = 'jumbotron' span = 4>
+    <div class = 'jumbotron' span = 8>
         
 <h2> Sign up</h2>
 <p> Fill in the details and sign up to enjoy the app benefits</p>
