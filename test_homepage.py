@@ -9,7 +9,7 @@ class pagesthatloadminussignin(unittest.TestCase):
     def testindex(self):
         """Test that homepage shows up even when not signed in"""
         rv = self.app.get('/')
-        self.assertEqual(rv.status_code, 200, "homepage didnot load")
+        self.assertEqual(rv.status_code, 302, "homepage didnot load")
     def testsignin(self):
         """Test that log in shows up even when not signed in"""
         rv = self.app.get('/signin')
@@ -21,12 +21,12 @@ class pagesthatloadminussignin(unittest.TestCase):
 
     def testviewlist(self):
         """Test that viewlist does not show when not signed in"""
-        rv = self.app.get('/viewlist')
+        rv = self.app.get('/viewcategory')
         self.assertEqual(rv.status_code, 302, "viewlist page should not load unless signed in")
 
     def testcreatelist(self):
         """Test that createlist does not show when not signed in"""
-        rv = self.app.get('/createlist')
+        rv = self.app.get('/createcategory')
         self.assertEqual(rv.status_code, 302, "createlist page should not load unless signed in")
 
 

@@ -25,11 +25,11 @@ class createlisttestcase(unittest.TestCase):
                 username="phiona",
                 password="123"), follow_redirects=True)
             
-            sl = client.post('/createcatergory', data=dict(
-                listname="fish recipies"), follow_redirects=True)
+            sl = client.post('/createcategory', data=dict(
+                categoryname="fish recipies"), follow_redirects=True)
 
             logged_in = session["logged_in"]
-            category = session['recipe_catergory']
+            category = session['recipe_category']
             categories = False
             for key in category:
                 lists= category[key]
@@ -79,13 +79,13 @@ class createlisttestcase(unittest.TestCase):
             for key in category:
                 lists= category[key]
                 if lists['categoryname']=='':
-                    categories = True
+                    categories = False
             self.assertNotEqual(None, logged_in,
                                 "The user was not logged in")
-            self.assertEqual(categories, True, 'List not created')
+            self.assertEqual(categories, False, 'List not created')
 
             #test that the categoryname is in session
-            self.assertNotEqual({}, category, 'category not in session')
+            self.assertEqual({}, category, 'category not in session')
 
     
 if __name__ == '__main__':

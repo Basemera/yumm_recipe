@@ -28,7 +28,7 @@ class createrecipetestcase(unittest.TestCase):
             sl = client.post('/createcategory', data=dict(
                 listname="fish"), follow_redirects=True)
 
-            it = client.post('/addrecipe<category_id>', data = dict(recipename = 'fish steak', 
+            it = client.post('/addrecipe<category_id>', data = dict(name = 'fish steak', 
                                         category_id = 1), follow_redirects=True)
 
             logged_in = session["logged_in"]
@@ -37,8 +37,9 @@ class createrecipetestcase(unittest.TestCase):
             added = False
             for key in recipes:
                 recipe = recipes[key]
-                if recipe['name']=='fish':
+                if recipe['name']=='fish steak':
                     added = True
+                    break
             
 
             #test that when post request is successful
@@ -79,7 +80,7 @@ class createrecipetestcase(unittest.TestCase):
             sl = client.post('/createcategory', data=dict(
                 categoryname="fish"), follow_redirects=True)
 
-            it = client.post('/addrecipe<category_id>', data = dict(name = '', 
+            it = client.post('/addrecipe<category_id>', data = dict(name = 'fish', 
                                         category_id = 1), follow_redirects=True)
 
             recipes= session['recipes']

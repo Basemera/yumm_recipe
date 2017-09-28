@@ -77,18 +77,18 @@ class viewcategorytestcase(unittest.TestCase):
                 categoryname="fish"), follow_redirects=True)
 
             logged_in = session["logged_in"]
-            category = session['recipe_categories']
+            category = session['recipe_category']
             updated = False
             for key in category:
                 lists= category[key]
-                if lists['categorytname']=='fish':
+                if lists['categoryname']=='fish':
                     lists['categoryname']=''
                 if lists['categoryname']=='fish':
-                    updated = True
+                    updated = False
             self.assertNotEqual(None, logged_in,
                             "The user was not logged in")
             self.assertNotEqual({}, category, 'list created')
-            self.assertEqual(updated, True, 'List erroneosly updated')
+            self.assertNotEqual(updated, True, 'List erroneosly updated')
 
     
 if __name__ == '__main__':
