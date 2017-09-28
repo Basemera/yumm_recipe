@@ -25,11 +25,11 @@ class createlisttestcase(unittest.TestCase):
                 username="phiona",
                 password="123"), follow_redirects=True)
             
-            sl = client.post('/createcatergory', data=dict(
-                listname="fish recipies"), follow_redirects=True)
+            sl = client.post('/createcategory', data=dict(
+                categoryname="fish recipies"), follow_redirects=True)
 
             logged_in = session["logged_in"]
-            category = session['recipe_catergory']
+            category = session['recipe_category']
             categories = False
             for key in category:
                 lists= category[key]
