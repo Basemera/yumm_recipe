@@ -24,11 +24,12 @@
 </p>
 
 <a href = "#create_recipe" data-toggle="collapse"> Create recipe category</a>
-      
+<div class = "container">
+    <div class = "row">
         <div id = "create_recipe" class="collapse">
         <form class="form-horizontal" action = "/createcategory" method = "post">
           {{ form.hidden_tag() }}
-                <div class="form-group",class="col-sm-5" >
+                <div class="form-group" class="col-sm-5" >
                         <div class="col-sm-5">
                             {% for error in form.categoryname.errors %}
                             <span style="color: red;">[{{ error }}]</span>
@@ -51,6 +52,7 @@
 <a href = "/viewcategory">
 <button type="button" class="btn btn-succes active">Go back to recipes</button>
 </a>
-
+    </div>
+</div>
 </div>
 {% endblock %}

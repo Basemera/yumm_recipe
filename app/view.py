@@ -227,6 +227,24 @@ def addrecipe(id):
     return render_template('addrecipe.html', form = form, category_id = id, recipes = session["recipes"])
 
 
+@app.route('/viewrecipe/<recipe_id>', methods= ['GET', 'POST'])
+def viewrecipe(recipe_id):
+    create_session_keys()
+    if guest_redirect():
+        return redirect(url_for("signin"))
+
+    form_category = RecipecatergoryForm()
+    form = addrecipeForm()
+
+    return render_template("viewrecipe.html",
+                           title='View recipe categories',
+                           category=session["recipe_category"],
+                            recipe = session["recipes"],
+                           form=form,
+                           user=session["logged_in"]["userid"],
+                           form_recipe = form_recipe,
+                           recipe_id = recipe_id)
+
 @app.route('/updaterecipe/<recipe_id>', methods= ['GET', 'POST'])
 def updaterecipe(recipe_id):
     #a method to edit a recipe
