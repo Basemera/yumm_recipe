@@ -1,19 +1,16 @@
 language: python
-
 python:
-  - "3.6.2"
-
-# command to install dependencies
-install: "pip install -r requirements.txt"
-
-before_install:
-    - pip install pytest-cov
-    - pip install coveralls
-
+  - "3.5"
+  - "3.6"
+# command to install app dependencies
+install:
+  - pip install -r requirements.txt
 # command to run tests
-script: - py.test
+script:
+  - nosetests
 
-after_success:
-    - coveralls
+after success:
+  - coveralls 
+© 2017 GitHub, Inc.
 
 
