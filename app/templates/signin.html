@@ -2,7 +2,7 @@
 
 {% block content %}
 <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet" />
-<div class="container col-xs-12">
+<div class="container col-xs-12, jumbtron">
 
   <!-- flash messages logic -->
     {% with messages = get_flashed_messages() %}
@@ -54,7 +54,6 @@
     <div class="form-group"> 
       <div class="col-sm-offset-5 col-sm-5">
         <button type="submit" class="btn btn-success">Submit</button>
-        user['username'] == form.username.data and user['password'] == form.password.data:
       </div>
     </div>
   </form>
