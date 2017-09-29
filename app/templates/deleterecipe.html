@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<!-- flash messages logic -->
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 
@@ -15,6 +16,7 @@
 {% endif %}
 {% endwith %}
 
+<!-- form to delete recipe -->
 <form action="/deleterecipe/{{recipe_id}}" method="post" name= "delete-recipe">
     {{ form.hidden_tag() }}
     <h2 class="form-heading">Delete recipe</h2>
@@ -42,5 +44,6 @@
     </div>
 </form>
 </div>
+<!-- return to lists -->
  <div><a href = "/viewcategory"><button>No return to list of recipes</button></a></div>                          
 {% endblock %}

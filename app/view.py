@@ -1,10 +1,16 @@
+from flask import Flask
+
+# initialize the flask application
+
+
 import os
-from flask import Flask, request, render_template, flash, redirect, url_for, get_flashed_messages, session, abort
+from flask import request, render_template, flash, redirect, url_for, get_flashed_messages, session, abort
 from .forms import LoginForm, RegistrationForm, RecipecatergoryForm, addrecipeForm, editrecipeForm
 from . import app
 from app.modals import User, recipe_category, recipe, Abstract
 
 def create_session_keys():
+    """Create session keys"""
     if "users" not in session:
         session["users"] = {}
     if "recipe_category" not in session:
@@ -97,15 +103,20 @@ def signin():
     if request.method == 'POST':
         if form.validate_on_submit():
             users = session["users"]
-            lists = users.items()
             
+            
+            # logic to make sure users cannot log in with incorrect credentials
             for key in users:
                 
                 user = users[key]
-                
-                session['logged_in'] = {'username':form.username.data, 'userid': user['userid']}
-                return redirect(url_for('viewcategory'))
-                flash({"message": 'You are not signed up please sign up to continue'})
+                for key in user:
+                    userss = user[key]
+                    if form.username.data and form.password.data in userss:
+                        session['logged_in'] = {'username':form.username.data, 'userid': user['userid']}
+                        return redirect(url_for('viewcategory'))
+                        flash({"message": 'log in successful'})
+                    return redirect(url_for('signin'))
+                    flash({"message":'Login failed! incorrect credentials.'})
             
         flash({"message":'Login failed! incorrect credentials. Please sign up to continue'})
         return redirect(url_for('signup'))

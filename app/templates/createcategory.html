@@ -22,11 +22,12 @@
 <p> Thank you for using the Yummy app. Please click below to create recipe catergories.
     If you already have some catergories click view recipes to view your recipes. Thank you</p>
 </p>
-
+<!-- To create a recipe category -->
 <a href = "#create_recipe" data-toggle="collapse"> Create recipe category</a>
 <div class = "container">
     <div class = "row">
         <div id = "create_recipe" class="collapse">
+            <!-- form to create recipe category -->
         <form class="form-horizontal" action = "/createcategory" method = "post">
           {{ form.hidden_tag() }}
                 <div class="form-group" class="col-sm-5" >
@@ -50,6 +51,7 @@
   </form>
 </div>
 <a href = "/viewcategory">
+    <!-- button to return to view categories -->
 <button type="button" class="btn btn-succes active">Go back to recipes</button>
 </a>
     </div>

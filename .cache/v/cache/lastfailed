@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-{}
-=======
 {
-  "test_createlist.py::createlisttestcase::testcategorynamerequirred": true,
-  "test_homepage.py": true
+  "test_signin.py::logintestcase::testinvalidcredentials": true
 }
->>>>>>> 1f3953eddecc6c14253bdf441f9415db841a0e86

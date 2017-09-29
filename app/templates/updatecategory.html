@@ -1,7 +1,7 @@
 {% extends "baseloggedin.html" %}
 
 {% block content %}
-
+<!-- flash messages logic -->
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 
@@ -14,7 +14,7 @@
 
 {% endif %}
 {% endwith %}
-
+<!-- form to update category -->
 <form action="/updatecategory/{{category_id}}" method="post" name= "update-recipe-category">
     {{ form.hidden_tag() }}
     <h2 class="form-heading">Edit Recipe categgory</h2>

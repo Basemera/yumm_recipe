@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<!-- flash message logic -->
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 
@@ -15,6 +16,7 @@
 {% endif %}
 {% endwith %}
 
+<!-- form to update recipe -->
 <form action="/updaterecipe/{{recipe_id}}" method="post" name= "update-recipe">
     {{ form.hidden_tag() }}
     <h2 class="form-heading">Edit Recipe</h2>

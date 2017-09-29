@@ -6,7 +6,7 @@
 <link href="{{ url_for('static', filename='css/signup.css') }}" rel="stylesheet" />
 
 <div class="container">
-
+<!-- flash messages logic -->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
 
@@ -25,7 +25,7 @@
         
 <h2> Sign up</h2>
 <p> Fill in the details and sign up to enjoy the app benefits</p>
-        
+        <!-- signup form -->
         <form class="form-signup form form-horizontal" action="/signup" name="sign-up" method="post">
           {{ form.hidden_tag() }}
                 <div class="form-group" >

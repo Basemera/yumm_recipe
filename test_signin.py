@@ -82,6 +82,27 @@ class logintestcase(unittest.TestCase):
                             "The user was erroneusly logged in")
             #test that signin page is reloaded
             self.assertEqual(rv1.status_code, 200, "signin page didnot load as expected" )
+
+    def testinvalidcredentials(self):
+        #test make sure users cannot login with incorrect credentials
+        with app.test_client() as client:
+            rv = client.post('/signup', data=dict(
+            username="phiona",
+            email="bsmrrachel@gmail.com",
+            password="123"
+            ), follow_redirects=True)
+            rv1 = client.post('/signin', data=dict(
+                username="stella",
+                password="123"), follow_redirects=True)
+
+            logged_in = session["logged_in"]
+
+            self.assertEqual(None, logged_in,
+                            "The user was erroneusly logged in")
+
+           
+            #test that signin page is reloaded
+            self.assertEqual(rv1.status_code, 200, "signin page didnot load as expected" )
            
     def testredirectstoviewlist(self):
         #test that successful login redirects to viewlist

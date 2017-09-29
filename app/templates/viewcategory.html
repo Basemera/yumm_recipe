@@ -5,7 +5,10 @@
 <link rel ="stylesheet" href = "static/css/view.css">
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <div class="panel-group" id="accordion">
+        <!-- flash message logic -->
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 
@@ -26,7 +29,7 @@
                                 <a href="/createcategory" >Create category</a>
                                 <div>
                                         <p style="background-color:beige">To view recipes click a category</p>
-
+<!-- logic to view recipe categories -->
                                         {% if category %}
                                         
                                                     {% for item in category %}
@@ -35,6 +38,7 @@
                                                     {% if user == category[item]['userid'] %}
                                                     <div >
                                                                 <p style="background-color:beige"> 
+                                                                        <!-- create an accrodion to toggle the view of recipes -->
                                                                  <a data-toggle="collapse" data-parent="#accordion" href="#{{ category[item]['category_id'] }}">  {{ category[item]['categoryname'] }}</a>
 
                                                                     <div style="padding:0">
@@ -56,8 +60,9 @@
 
                                                                             
 
-                                                                           
-<div id="{{ category[item]['category_id'] }}" class="collapse">                                                                            
+<!-- enable collapse and view of recipes -->                                                                           
+<div id="{{ category[item]['category_id'] }}" class="collapse">    
+        <!-- logic to view recipes -->                                                                        
 {% if recipe %}
                                                                             
                                                                             

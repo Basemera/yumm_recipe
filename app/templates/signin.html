@@ -4,7 +4,7 @@
 <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet" />
 <div class="container col-xs-12">
 
-  
+  <!-- flash messages logic -->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
 
@@ -22,6 +22,7 @@
 <h2> Sign in</h2>
 <p> Please sign in to continue</p>
         </div>
+        <!-- form to signin user -->
         <form class="form-horizontal col-sm-10 form-signin form" action = "/signin" method = "post">
           {{ form.hidden_tag() }}
                 <div class="form-group input-wrap",class="col-sm-5" >
@@ -53,8 +54,10 @@
     <div class="form-group"> 
       <div class="col-sm-offset-5 col-sm-5">
         <button type="submit" class="btn btn-success">Submit</button>
+        user['username'] == form.username.data and user['password'] == form.password.data:
       </div>
     </div>
   </form>
+
 </div>
 {% endblock %}
