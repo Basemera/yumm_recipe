@@ -1,0 +1,1 @@
+web: gunicorn --chdir app heroku_views:app
