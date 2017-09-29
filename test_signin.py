@@ -93,7 +93,7 @@ class logintestcase(unittest.TestCase):
             ), follow_redirects=True)
             rv1 = client.post('/signin', data=dict(
                 username="stella",
-                password="123"), follow_redirects=True)
+                password="456"), follow_redirects=True)
 
             logged_in = session["logged_in"]
 

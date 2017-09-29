@@ -115,6 +115,7 @@ def signin():
                         session['logged_in'] = {'username':form.username.data, 'userid': user['userid']}
                         return redirect(url_for('viewcategory'))
                         flash({"message": 'log in successful'})
+                    session['logged_in'] = None
                     return redirect(url_for('signin'))
                     flash({"message":'Login failed! incorrect credentials.'})
             
