@@ -1,12 +1,9 @@
 {% extends "baseloggedin.html" %}
 
 {% block content %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel ="stylesheet" href = "static/css/view.css">
+<script src="js/bootstrap.min.js"></script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
+        
 <div class="panel-group" id="accordion">
         <!-- flash message logic -->
 {% with messages = get_flashed_messages() %}
@@ -19,8 +16,8 @@
 {% endif %}
 {% endwith %}
 
-
-        <div span = 6>
+<div>
+        <div>
                         <p>Yummy Recipe App</p>
                         <p style="color:DodgerBlue; background-color:beige"> Welcome to the Yummy Recipe view app page</p>
                 <div>
@@ -89,12 +86,12 @@
                                                                                                             <a href="/deleterecipe/{{ recipe[a]['recipe_id'] }}">
                                                                                                                 
                                                                                                             </a> 
-                                                                                                            
+                                                                                                              
                                                                                                     </div>
-                                                                                                </li>
+                                                                                     </li>
                                                                                     </div>
                                                                                     
-                                                                                                
+                                                                                    <a href = "addrecipe{{ category[item]['category_id'] }}">add a recipe</a>             
                                                                                     
                                                                                     {% endif %}                                                                   
                                                                                     
@@ -103,7 +100,8 @@
                                                                                                                                                                           {% endif %}
                                                                                                                                                                           
 </div></div>
-<p> Recipes click here to <a href = "addrecipe{{ category[item]['category_id'] }}">add a recipe</a></p>
+<a href = "addrecipe{{ category[item]['category_id'] }}">add a recipe</a>
+ 
 
                                                                                                                                                                           {% endif %}
                                                                                                                                                                           
@@ -117,9 +115,10 @@
                                                                                                                                                                               
                                                     </div>
                                                     
-                                    
-                                                        <div class = 'jumbotron'>
-                                                                <p><a href="/createcategory">add another category</a></p></div>
+                                    <div class = "row">
+                                            <div class = "col-sm-4"></div>
+                                                        <div class = 'jumbotron col-sm-8'>
+                                                                <p><a href="/createcategory">add another category</a></p></div></div>
                                                 
                                 
                             
