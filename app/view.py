@@ -111,13 +111,14 @@ def signin():
                 user = users[key]
                 for key in user:
                     userss = user[key]
-                    if form.username.data and form.password.data in userss:
-                        session['logged_in'] = {'username':form.username.data, 'userid': user['userid']}
-                        return redirect(url_for('viewcategory'))
-                        flash({"message": 'log in successful'})
-                    session['logged_in'] = None
-                    return redirect(url_for('signin'))
-                    flash({"message":'Login failed! incorrect credentials.'})
+                    if form.username.data not in userss and form.password.data not in userss:
+                        session['logged_in'] = None
+                        return redirect(url_for('signin'))
+                        flash({"message":'Login failed! incorrect credentials.'})
+                    session['logged_in'] = {'username':form.username.data, 'userid': user['userid']}
+                    return redirect(url_for('viewcategory'))
+                    flash({"message": 'log in successful'})
+                    
             
         flash({"message":'Login failed! incorrect credentials. Please sign up to continue'})
         return redirect(url_for('signup'))
