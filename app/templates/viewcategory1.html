@@ -1,0 +1,131 @@
+{% extends "baseloggedin.html" %}
+
+{% block content %}
+<linl rel ="stylesheet" href = "static/css/view.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div style = "height:fit-content; background-color:lavenderblush">
+<div class="panel-group" style="margin-left: 200px; font-size:20px; font-style:oblique; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif" id="accordion">
+        <!-- flash message logic -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+{% for message in messages %}
+{{ message.message }}
+{% endfor %}
+
+{% endif %}
+{% endwith %}
+
+<div>
+        <div>
+                        <p>Yummy Recipe App</p>
+                        <p> Welcome to the Yummy Recipe view app page</p>
+                <div>
+                        <div>
+                                
+                                <a href="/createcategory" >Create category</a>
+                                <div>
+                                        <p>To view recipes click a category</p>
+<!-- logic to view recipe categories -->
+                                        {% if category %}
+                                        
+                                                    {% for item in category %}
+                                        
+                                                   
+                                                    {% if user == category[item]['userid'] %}
+                                                    <div >
+                                                                <p> 
+                                                                        <!-- create an accrodion to toggle the view of recipes -->
+                                                                        <a data-toggle="collapse" data-parent="#accordion" href="#{{ category[item]['category_id'] }}">  {{ category[item]['categoryname'] }}</a>
+                                                                 <a href="/updatecategory/{{ category[item]['category_id'] }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                                        <a href="/deletecategory/{{ category[item]['category_id'] }}"><span class="glyphicon glyphicon-trash"></span>      
+                                                                            </a><a href = "addrecipe{{ category[item]['category_id'] }}"><span class = "glyphicon glyphicon-plus-sign"></a>
+                                                                    <div>
+                                                                            
+                                                                        </div>
+                                                                        <div>
+                                                                                
+                                                                            </div></p>
+                                                    </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+
+                                                                            
+
+<!-- enable collapse and view of recipes -->                                                                           
+<div id="{{ category[item]['category_id'] }}" class="collapse" style="background-color:lavenderblush">    
+        <!-- logic to view recipes -->                                                                        
+{% if recipe %}
+                                                                            
+                                                                            
+                                                                    
+                                                                    
+                                                                                    {% for a in recipe %}
+                                                                    
+                                                                                
+                                                                                    {% if user == recipe[a]['userid'] and recipe[a].category_id == category[item].category_id %}
+                                                                                    
+                                                                                    <div style = "background-color:lavenderblush">
+                                                                                            <div style = "background-color:lavenderblush">
+                                                                                                    <li>
+                                                                                            <label> <h3> {% if recipe[a]["checked"] %} checked {% endif %} {{ recipe[a]['name'] }}
+                                                                                                        <a href="/updaterecipe/{{ recipe[a]['recipe_id'] }}"><span class="glyphicon glyphicon-edit"></span></a>
+                                                                                                        <a href="/deleterecipe/{{ recipe[a]['recipe_id'] }}"><span class="glyphicon glyphicon-trash" class="btn btn-info"></span></a></h3></label></div>
+                                                                                                        <div style = "background-color:lavenderblush">
+                                                                                                    <a href="/updaterecipe/{{ recipe[a]['recipe_id'] }}">
+                                                                                                        
+                                                                                                        
+                                                                                                    </a> 
+                                                                                                    </div>
+                                                                                                    <div style = "background-color: cadetblue">
+                                                                                                            <a href="/deleterecipe/{{ recipe[a]['recipe_id'] }}">
+                                                                                                                
+                                                                                                            </a> 
+                                                                                                              
+                                                                                                    </div>
+                                                                                     </li>
+                                                                                    
+                                                                                    
+                                                                                    <a href = "addrecipe{{ category[item]['category_id'] }}">add a recipe</a>             
+                                                                                </div>
+                                                                                    {% endif %}                                                                   
+                                                                                    
+                                                                                                                                                          
+                                                                                                                                                                          {% endfor %}
+                                                                                                                                                                          {% endif %}
+                                                                                                                                                                          
+</div></div>
+<!--<a href = "addrecipe{{ category[item]['category_id'] }}">add a recipe</a>-->
+ 
+
+                                                                                                                                                                          {% endif %}
+                                                                                                                                                                          
+                                                                                                                                                                  
+                                                                                                                                                                          
+                                                                                                                                                                  
+                                                                                                                                                                              {% endfor %}
+                                                                                                                                                                              
+                                                                                                                                          
+                                                                                                                                                                              {% endif %}
+                                                                                                                                                                              
+                                                    </div>
+                                                    
+                                    <div class = "row">
+                                            <div class = "col-sm-4"></div>
+                                                       <!-- <div class = 'jumbotron col-sm-8'>
+                                                                <p><a href="/createcategory">add another category</a></p></div></div>-->
+                                                
+                                
+                            
+                        
+                
+        
+                                    </div>
+{% endblock %}

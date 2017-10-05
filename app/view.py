@@ -72,8 +72,14 @@ def signup():
 
     if request.method == 'POST':
         if form.validate_on_submit():
-            
-            new_user = User(form.username.data, form.password.data, form.email.data)
+            reg_user = session['users']
+            for key in reg_user:
+                user = reg_user[key]
+                if form.username.data == user['username'] and form.email.data == user['email']:
+                    flash({"message": "Username and email already assigned please login to continue"})
+                    return redirect('/signin')
+                
+            new_user = User(username=form.username.data, email=form.email.data, password=form.password.data)
             session["users"][new_user.userid] = vars(new_user)
             flash({"message": "You have successfully signed up! Login to continue"})
 
@@ -109,15 +115,17 @@ def signin():
             for key in users:
                 
                 user = users[key]
-                for key in user:
-                    userss = user[key]
-                    if form.username.data not in userss and form.password.data not in userss:
-                        session['logged_in'] = None
-                        return redirect(url_for('signin'))
-                        flash({"message":'Login failed! incorrect credentials.'})
+                
+                if form.username.data == user['username'] and form.password.data == user['password']:
                     session['logged_in'] = {'username':form.username.data, 'userid': user['userid']}
                     return redirect(url_for('viewcategory'))
                     flash({"message": 'log in successful'})
+            
+                
+                session['logged_in'] = None
+                return redirect(url_for('signin'))
+                flash({"message":'Login failed! incorrect credentials.'})
+                   
                     
             
         flash({"message":'Login failed! incorrect credentials. Please sign up to continue'})
@@ -211,7 +219,7 @@ def viewcategory():
     form = RecipecatergoryForm()
     form_recipe = addrecipeForm()
 
-    return render_template("viewcategory.html",
+    return render_template("viewcategory1.html",
                            title='View recipe categories',
                            category=session["recipe_category"],
                             recipe = session["recipes"],

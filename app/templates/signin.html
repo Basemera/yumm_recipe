@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet" />
+<link href="static/css/bootstrap.css" rel="stylesheet" />
 <div class="container col-xs-12, jumbtron">
 
   <!-- flash messages logic -->
@@ -55,8 +55,10 @@
       <div class="col-sm-offset-5 col-sm-5">
         <button type="submit" class="btn btn-success">Submit</button>
       </div>
+      <div style = "float: left">
+      <p><a href = "/signup">Sign up</a></p> </h2></div>
     </div>
   </form>
-  <p><a href = "/signup">Sign up</p> </h2>
+ 
 </div>
 {% endblock %}

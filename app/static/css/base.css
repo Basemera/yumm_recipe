@@ -1,8 +1,6 @@
-body { background-color: cornflowerblue;
-    background-repeat: no-repeat;
-    background-position: right top;
-    margin-right: 200px;
-
+body {
+    background-color: lavenderblush;
+    
 }
 p{
     color:blueviolet; 
@@ -15,10 +13,17 @@ h2{color: purple;
     margin-left: 10px
 
 }
+.collapse{
+    background-color: lavenderblush
+}
 
 .form{
    border: 2px border-style mediumaquamarine;
    background-color:lightgreen;
-   color:#111AF0;
+   color:#1019F0;
    border-style: groove;
+}
+
+.container{
+    background-color: cadetblue;
 }

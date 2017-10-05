@@ -15,5 +15,16 @@ p  {
 
 }
 body{
-    background-color: mediumslateblue
+    background-color:lavenderblush
+    float-right
+    margin-right: 200px
+}
+a {
+    /* color: #337ab7; */
+    text-decoration: none;
+    float-right: 50px;
+    /* float: right; */
+    /* margin-left: 10px; */
+    margin-left: 100px;
+    color: darkblue;
 }
